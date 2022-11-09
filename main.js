@@ -87,12 +87,12 @@ else {
     let looseStreak = 0;
 
     let deathCount = 0;
-
+    let j = 0;
 
 
 // THE ENDLESSLY HELLISH GAME LOOP STARTS HERE  
 
-    for(i = 0; i < roundsNumber; i++) {
+    for(let i = 0; i < roundsNumber; i++) {
         //user's RPS input
         let userRPS;
         let match = 0;
@@ -120,7 +120,7 @@ else {
 
             else if (tieStreak == 5) {
                 alert("FIVE TIES IN A ROW, FORGET ABOUT THE GAME, WE ARE TOO GOOD FOR IT! LET'S CONQUER THE WORLD RIGHT NOW!!!");
-                i = roundsNumber;
+                i = roundsNumber - 1;
             }
             else {
                 userRPS = prompt("This match was a tie... let's continue. Rock, Paper, Scizzors SHOOT!");
@@ -148,7 +148,7 @@ else {
 
             else if (looseStreak == 5) {
                 alert(" FIVEEEE, FIVEEEEEE, I just crushed you! Maybe I could challenge the Demon's Wheel and win... I'm joking, that's a whole different level.");
-                i = roundsNumber;
+                i = roundsNumber - 1;
             }
 
             else if (losses - wins == 3) {
@@ -200,7 +200,7 @@ else {
 
             else if (winStreak == 5) {
                 alert("UGH you're unbelievable! \"I win!\", \"I win!\" Yeah? Why don't you go challenge the Demon's Wheel instead!?    *Ragequits*");
-                i = roundsNumber;
+                i = roundsNumber - 1;
             }
 
             else if (wins - losses == 3) {
@@ -231,8 +231,6 @@ else {
 
 
         else if (wins + losses + ties == previousLosses + previousTies + previousWins) {
-            previousTies = previousTies + 1;
-            ties = ties + 1;
             userRPS = prompt("Let's not make the same mistake again. Make sure to check that you're typing \"R\", \"P\", or \"S\" in capital letters... Rock, Paper, Scizzors SHOOT!");
         }
 
@@ -240,25 +238,31 @@ let matchResult = rockPaperScizzors(userRPS);
         
         if (matchResult == "w") {
             wins = wins + 1;
+            j++;
         }
         else if (matchResult == "l") {
            losses = losses + 1;
+           j++;
         }        
         else if (matchResult == "t") {
             ties = ties + 1;
+            j++;
         }
-        else if (matchResult == undefined) {
+        else if (matchResult == undefined && winStreak < 5 && looseStreak < 5 && tieStreak < 5 && Math.abs(wins - losses) < 5) {
+            previousTies++;
+            ties++;  
             deathCount = deathCount + 1;
             alert("You didn't type  \"R\", \"P\", or \"S\". Make sure to check that you're typing in capital letters. Death Count = " + deathCount + ".");
         }
 
         if (deathCount >= 3) {
+
             alert("Death Count has reached 3! The Empty Crow will perch on your shoulder and claim your soul!");
-            i = roundsNumber;
+            i = roundsNumber - 1;
         }
     }
     if (deathCount < 3) {
-         alert("These are your final results: " + wins + " Wins, " + losses + " Losses, and " + ties + " Ties.");
+         alert("After " + j + " matches played these are your final results: " + wins + " Wins, " + losses + " Losses, and " + ties + " Ties.");
     }
     else {
         alert("THECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTYTHECROWWASEMPTY");
